@@ -13,7 +13,7 @@ This system extracts text from resumes & JDs → chunks → embeds → retrieves
 
 ## 🔖 Badges
 
-<<<<<<< HEAD
+
 ![Python](https://img.shields.io/badge/Python-3.10+-blue?logo=python)
 ![FastAPI](https://img.shields.io/badge/FastAPI-Backend-009688?logo=fastapi)
 ![React](https://img.shields.io/badge/React-Frontend-61DAFB?logo=react)
@@ -23,7 +23,7 @@ This system extracts text from resumes & JDs → chunks → embeds → retrieves
 ![License](https://img.shields.io/badge/License-MIT-green)
 =======
 ![Architecture Diagram](./assets/Architecture.png)
->>>>>>> a40f3b6402be9530e6295a502c5110f828fbd789
+
 
 ---
 
@@ -89,10 +89,6 @@ resume-rag-fastapi/
 ├── .gitignore
 └── README.md
 
-<<<<<<< HEAD
-
-=======
->>>>>>> a40f3b6402be9530e6295a502c5110f828fbd789
 
 
 ## ⚙️ Local Setup
