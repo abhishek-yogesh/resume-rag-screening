@@ -81,27 +81,26 @@ resume-rag-fastapi/
 └── README.md
 
 
+
+
 ---
 
 ## ⚙️ Local Setup
 
 ### Backend (FastAPI)
+
 ```bash
 cd backend
 python -m venv venv
-venv\Scripts\Activate.ps1
+venv\Scripts\Activate.ps1      # Windows PowerShell
 pip install -r requirements.txt
+
 uvicorn main:app --reload --port 8000
 
 
-Backend UI:
+### Frontend (React + Vite)
 
-API root → http://localhost:8000
-
-Swagger → http://localhost:8000/docs
-
-
-Frontend (React + Vite)
+```bash
 cd frontend
 npm install
 npm run dev
@@ -111,7 +110,6 @@ http://localhost:5173
 
 📘 API Documentation
 POST /upload_resume
-
 file=@resume.pdf
 
 Response:
@@ -123,6 +121,8 @@ Response:
 
 
 POST /upload_jd
+file=@jd.txt
+
 Response:
 {
   "status": "success",
@@ -171,17 +171,19 @@ sample_jd_1.txt
 sample_jd_2.txt
 
 
-🚀 Deployment
-Backend (Render / Railway / EC2)
+## 🚀 Deployment
 
-Environment:
+### Backend (Render / Railway / EC2)
+
+Environment variables:
 GROQ_API_KEY=
 PINECONE_API_KEY=
 VECTOR_STORE=chroma
 
-
-Start:
+Start command:
+```bash
 uvicorn main:app --host 0.0.0.0 --port $PORT
+
 
 
 Frontend (Vercel / Netlify)
