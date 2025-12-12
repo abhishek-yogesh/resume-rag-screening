@@ -12,6 +12,7 @@ This system extracts text from resumes & JDs → chunks → embeds → retrieves
 ---
 
 ## 🔖 Badges
+
 ![Python](https://img.shields.io/badge/Python-3.10+-blue?logo=python)
 ![FastAPI](https://img.shields.io/badge/FastAPI-Backend-009688?logo=fastapi)
 ![React](https://img.shields.io/badge/React-Frontend-61DAFB?logo=react)
@@ -23,6 +24,7 @@ This system extracts text from resumes & JDs → chunks → embeds → retrieves
 ---
 
 ## 🖼 System Architecture
+
 <p align="center">
   <img src="./assets/Architecture.png" alt="Architecture Diagram" width="850">
 </p>
@@ -30,6 +32,7 @@ This system extracts text from resumes & JDs → chunks → embeds → retrieves
 ---
 
 ## 📑 Table of Contents
+
 - [Features](#-features)
 - [Project Structure](#-project-structure)
 - [Local Setup](#-local-setup)
@@ -44,6 +47,7 @@ This system extracts text from resumes & JDs → chunks → embeds → retrieves
 ---
 
 ## 🚀 Features
+
 - Upload Resume (PDF/TXT)
 - Upload Job Description
 - Automatic text extraction → chunking → embedding
@@ -55,6 +59,8 @@ This system extracts text from resumes & JDs → chunks → embeds → retrieves
 ---
 
 ## 📂 Project Structure
+
+
 resume-rag-fastapi/
 ├── backend/
 │ ├── app/
@@ -82,11 +88,8 @@ resume-rag-fastapi/
 
 
 
-
 ---
 
-
----
 ## ⚙️ Local Setup
 
 ### Backend (FastAPI)
@@ -94,10 +97,17 @@ resume-rag-fastapi/
 ```bash
 cd backend
 python -m venv venv
-venv\Scripts\Activate.ps1
+venv\Scripts\Activate.ps1      # Windows PowerShell
 pip install -r requirements.txt
 
 uvicorn main:app --reload --port 8000
+
+
+Backend UI:
+API root → http://localhost:8000
+
+Swagger Docs → http://localhost:8000/docs
+
 
 
 ### Frontend (React + Vite)
