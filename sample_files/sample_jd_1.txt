@@ -1,0 +1,14 @@
+Role: Full Stack Developer
+
+Responsibilities:
+- Build frontend components using React.
+- Develop backend APIs using Node.js or Python.
+- Work with databases (MongoDB / PostgreSQL).
+- Implement authentication and secure API design.
+- Deploy apps to AWS / cloud environment.
+
+Required Skills:
+- React, JavaScript
+- Node.js or Python (FastAPI optional)
+- Git, Docker
+- AWS knowledge is a bonus

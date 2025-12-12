@@ -1,0 +1,20 @@
+Priya Sharma
+Data Engineer
+Email: priyasharma@example.com | Hyderabad, India
+
+SUMMARY
+Data Engineer with experience in ETL pipelines, cloud data systems, and building analytics workflows. Skilled in Python, SQL, Spark, and data modeling.
+
+SKILLS
+Python, SQL, Apache Spark, Databricks, Airflow, AWS Glue
+Docker, Kafka, Pandas, Snowflake
+
+EXPERIENCE
+Data Engineer – InsightData (2021–Present)
+- Built ETL pipelines using Airflow & Spark.
+- Designed data warehouse tables for analytics.
+- Developed ingestion workflows (Kafka → S3 → Redshift).
+- Improved pipeline performance by 30%.
+
+EDUCATION
+B.Tech in Information Technology (2020)

@@ -1,0 +1,15 @@
+Role: Data Engineer
+
+Responsibilities:
+- Build and maintain ETL pipelines.
+- Work with distributed systems (Spark).
+- Develop data workflows in Airflow.
+- Handle ingestion from Kafka or APIs.
+- Optimize data models for analytics.
+
+Required Skills:
+- Python, SQL
+- Apache Spark
+- Airflow
+- Cloud data systems (AWS/Snowflake)
+- Docker optional

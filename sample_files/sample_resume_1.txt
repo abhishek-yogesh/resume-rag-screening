@@ -1,0 +1,25 @@
+John Doe
+Full Stack Developer
+Email: johndoe@example.com | Bangalore, India
+
+SUMMARY
+Full Stack Developer with 2+ years experience building MERN applications, REST APIs, and scalable backend services. Strong problem-solving skills and hands-on experience with cloud deployments.
+
+SKILLS
+JavaScript (ES6+), React, Node.js, Express, MongoDB, Git, Docker
+Python, FastAPI, PostgreSQL, AWS (EC2, S3), CI/CD
+
+EXPERIENCE
+Software Developer – ABC Tech (2022–Present)
+- Built scalable REST APIs using Node.js and Express.
+- Implemented authentication (JWT) and RBAC.
+- Developed frontend components in React + Tailwind.
+- Integrated AWS S3 for file uploads.
+- Automated deployments using GitHub Actions.
+
+Backend Intern – CodeFlow (2021–2022)
+- Assisted in building FastAPI microservices.
+- Implemented unit tests (pytest).
+
+EDUCATION
+B.Tech in Computer Science (2021)
