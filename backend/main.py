@@ -196,10 +196,7 @@ class MatchRequest(BaseModel):
 
 
 # ----------------------------
-# MATCH ENDPOINT (FINAL VERSION)
-# ----------------------------
-# ----------------------------
-# MATCH ENDPOINT (FINAL CLEAN VERSION)
+# MATCH ENDPOINT 
 # ----------------------------
 @app.post("/match")
 async def match_resumes(payload: MatchRequest):
@@ -268,7 +265,7 @@ async def match_resumes(payload: MatchRequest):
     skills_score = round((len(strengths) / len(jd_skills) * 100), 2) if jd_skills else 0
 
     # ------------------------------
-    # 4️⃣ Tools Matching (Improved)
+    # 4️⃣ Tools Matching 
     # ------------------------------
     tools = ["docker", "kubernetes", "k8s", "aws", "gcp", "azure", "jenkins"]
 
@@ -282,7 +279,7 @@ async def match_resumes(payload: MatchRequest):
     )
 
     # ------------------------------
-    # 5️⃣ Experience Matching (Improved regex)
+    # 5️⃣ Experience Matching 
     # ------------------------------
     import re
 
@@ -308,7 +305,7 @@ async def match_resumes(payload: MatchRequest):
     jd_keyword_coverage = round((covered / len(jd_tokens) * 100), 2) if jd_tokens else 0
 
     # ------------------------------
-    # 7️⃣ FINAL WEIGHTED SCORE (ATS Style)
+    # 7️⃣ FINAL WEIGHTED SCORE 
     # ------------------------------
     final_score = round(
         0.40 * embedding_score +
@@ -347,7 +344,7 @@ async def match_resumes(payload: MatchRequest):
 
 
 # ----------------------------
-# RAG CHAT CLEAN VERSION
+# RAG CHAT 
 # ----------------------------
 @app.post("/chat")
 async def rag_chat(payload: dict):
@@ -369,7 +366,7 @@ async def rag_chat(payload: dict):
     CONVERSATIONS[resume_id].append({"role": "user", "content": question})
 
     # -------------------------
-    # 2️⃣ Embed the question (real RAG step)
+    # 2️⃣ Embed the question (real RAG step)``
     # -------------------------
     question_embedding = model.encode(question).tolist()
 
