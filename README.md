@@ -59,32 +59,31 @@ This system extracts text from resumes & JDs → chunks → embeds → retrieves
 ---
 
 ## 📂 Project Structure
-
-
 resume-rag-fastapi/
 ├── backend/
-│ ├── app/
-│ ├── main.py
-│ ├── requirements.txt
-│ └── .env.example
+│   ├── app/
+│   ├── main.py
+│   ├── requirements.txt
+│   └── .env.example
 │
 ├── frontend/
-│ ├── src/
-│ ├── public/
-│ ├── package.json
-│ └── vite.config.js
+│   ├── src/
+│   ├── public/
+│   ├── package.json
+│   └── vite.config.js
 │
 ├── assets/
-│ └── Architecture.png
+│   └── Architecture.png
 │
 ├── sample_files/
-│ ├── sample_resume_1.txt
-│ ├── sample_resume_2.txt
-│ ├── sample_jd_1.txt
-│ └── sample_jd_2.txt
+│   ├── sample_resume_1.txt
+│   ├── sample_resume_2.txt
+│   ├── sample_jd_1.txt
+│   └── sample_jd_2.txt
 │
 ├── .gitignore
 └── README.md
+
 
 
 
