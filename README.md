@@ -59,6 +59,7 @@ This system extracts text from resumes & JDs → chunks → embeds → retrieves
 ---
 
 ## 📂 Project Structure
+
     resume-rag-fastapi/
     ├── backend/
     │   ├── app/
@@ -84,10 +85,6 @@ This system extracts text from resumes & JDs → chunks → embeds → retrieves
     ├── .gitignore
     └── README.md
 
-
-
-
-
 ---
 
 ## ⚙️ Local Setup
@@ -101,111 +98,161 @@ venv\Scripts\Activate.ps1      # Windows PowerShell
 pip install -r requirements.txt
 
 uvicorn main:app --reload --port 8000
-
+```
 
 Backend UI:
-API root → http://localhost:8000
-Swagger Docs → http://localhost:8000/docs
 
+- API root → http://localhost:8000  
+- Swagger Docs → http://localhost:8000/docs  
+
+---
 
 ### Frontend (React + Vite)
+
+```bash
 cd frontend
 npm install
 npm run dev
+```
 
-Open frontend:
+Open frontend:  
 http://localhost:5173
 
-📘 API Documentation
-POST /upload_resume
+---
+
+## 📘 API Documentation
+
+### POST /upload_resume
+
+```bash
 file=@resume.pdf
-Response:
+```
+
+**Response:**
+```json
 {
   "status": "success",
   "resume_id": "uuid",
   "filename": "resume.pdf"
 }
+```
 
+---
 
-POST /upload_jd
+### POST /upload_jd
+
+```bash
 file=@jd.txt
-Response:
+```
+
+**Response:**
+```json
 {
   "status": "success",
   "jd_id": "uuid",
   "filename": "jd.txt"
 }
+```
 
+---
 
-POST /match-score
+### POST /match-score
+
+**Request:**
+```json
 {
   "resume_id": "uuid",
   "jd_id": "uuid"
 }
+```
 
-Response:
+**Response:**
+```json
 {
   "match_score": 82.4,
   "highlights": ["Strong React skills", "Missing AWS"],
   "explanation": "Based on retrieved context..."
 }
+```
 
+---
 
-POST /query
+### POST /query
+
+**Request:**
+```json
 {
   "question": "What skills are missing?",
   "resume_id": "uuid",
   "jd_id": "uuid"
 }
+```
 
-Response:
+**Response:**
+```json
 {
   "answer": "The candidate lacks AWS deployment experience."
 }
+```
 
+---
 
-🧪 Sample Files
+## 🧪 Sample Files
 
-Included in sample_files/:
+Located in `sample_files/`:
 
-sample_resume_1.txt
+- sample_resume_1.txt  
+- sample_resume_2.txt  
+- sample_jd_1.txt  
+- sample_jd_2.txt  
 
-sample_resume_2.txt
-
-sample_jd_1.txt
-
-sample_jd_2.txt
-
+---
 
 ## 🚀 Deployment
 
 ### Backend (Render / Railway / EC2)
+
 Environment variables:
+
+```
 GROQ_API_KEY=
 PINECONE_API_KEY=
 VECTOR_STORE=chroma
+```
 
 ### Start command:
 
 ```bash
 uvicorn main:app --host 0.0.0.0 --port $PORT
+```
 
+---
 
-Frontend (Vercel / Netlify)
+### Frontend (Vercel / Netlify)
+
+```
 VITE_BACKEND_URL=https://your-backend-url
+```
 
-🧩 Environment Example:
+---
+
+## 🧩 Environment Example
+
+```
 GROQ_API_KEY=
 PINECONE_API_KEY=
 VECTOR_STORE=chroma
 VITE_BACKEND_URL=http://localhost:8000
+```
 
+---
 
-📄 License
+## 📄 License
+
 MIT License.
 
-👤 Author
-Abhishek Yogesh
+---
 
+## 👤 Author
 
-
+**Abhishek Yogesh**
