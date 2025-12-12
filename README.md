@@ -6,7 +6,7 @@ AI-powered Resume Screening (RAG) using FastAPI backend, React frontend, Sentenc
 
 ## 📌 System Architecture
 
-![Architecture Diagram](./assets/Resume RAG Architecture .png)
+![Architecture Diagram](./assets/Architecture.png)
 
 > `/upload_resume` and `/upload_jd` perform preprocessing (text → chunk → embed).  
 > `/match-score` only retrieves stored data → vector search → Groq LLaMA analysis.
