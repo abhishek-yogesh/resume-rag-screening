@@ -13,7 +13,10 @@ This system extracts text from resumes & JDs → chunks → embeds → retrieves
 
 ## 🔖 Badges
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> f8dcb66 (docs: final cleaned README)
 ![Python](https://img.shields.io/badge/Python-3.10+-blue?logo=python)
 ![FastAPI](https://img.shields.io/badge/FastAPI-Backend-009688?logo=fastapi)
 ![React](https://img.shields.io/badge/React-Frontend-61DAFB?logo=react)
@@ -21,9 +24,12 @@ This system extracts text from resumes & JDs → chunks → embeds → retrieves
 ![Groq](https://img.shields.io/badge/LLM-Groq%20LLaMA%203-orange)
 ![ChromaDB](https://img.shields.io/badge/VectorDB-Chroma-9cf)
 ![License](https://img.shields.io/badge/License-MIT-green)
+<<<<<<< HEAD
 =======
 ![Architecture Diagram](./assets/Architecture.png)
 
+=======
+>>>>>>> f8dcb66 (docs: final cleaned README)
 
 ---
 
@@ -78,7 +84,7 @@ resume-rag-fastapi/
 │ └── vite.config.js
 │
 ├── assets/
-│ └── architecture.png
+│ └── Architecture.png
 │
 ├── sample_files/
 │ ├── sample_resume_1.txt
@@ -89,7 +95,12 @@ resume-rag-fastapi/
 ├── .gitignore
 └── README.md
 
+<<<<<<< HEAD
+=======
 
+>>>>>>> f8dcb66 (docs: final cleaned README)
+
+---
 
 ## ⚙️ Local Setup
 
@@ -103,37 +114,41 @@ pip install -r requirements.txt
 
 # Create .env based on .env.example
 uvicorn main:app --reload --port 8000
-Open:
+Open backend:
 
-API root → http://localhost:8000
+http://localhost:8000
 
-Swagger UI → http://localhost:8000/docs
+Swagger Docs → http://localhost:8000/docs
 
 Frontend (React + Vite)
 
 cd frontend
 npm install
 npm run dev
-Open:
-http://localhost:5173
+Open frontend:
 
+
+http://localhost:5173
 📘 API Documentation
 POST /upload_resume
 Uploads a resume → extract → chunk → embed → store.
 
 Request:
-file=@resume.pdf
 
+file=@resume.pdf
 Response:
+
+
 {
   "status": "success",
   "resume_id": "uuid",
   "filename": "resume.pdf"
 }
-
 POST /upload_jd
 Request:
 
+bash
+Copy code
 file=@jd.txt
 Response:
 
@@ -143,37 +158,38 @@ Response:
   "jd_id": "uuid",
   "filename": "jd.txt"
 }
-
-
 POST /match-score
-Runs full RAG pipeline → vector retrieval → Groq LLaMA analysis.
+Runs RAG → Retrieves similar text → Groq LLaMA 3 analysis.
 
 Request:
+
+
 {
   "resume_id": "uuid",
   "jd_id": "uuid"
 }
-
 Response:
+
+
 {
   "match_score": 82.4,
   "highlights": ["Strong React skills", "Missing AWS"],
   "explanation": "Based on retrieved context..."
 }
-
 POST /query (Optional Q&A)
 Request:
+
 {
   "question": "What skills are missing?",
   "resume_id": "uuid",
   "jd_id": "uuid"
 }
-
 Response:
+
+
 {
   "answer": "The candidate lacks AWS deployment experience."
 }
-
 🧪 Sample Files
 Located in sample_files/:
 
@@ -186,24 +202,25 @@ sample_jd_1.txt
 sample_jd_2.txt
 
 🚀 Deployment
-Backend → Render / Railway / EC2
-
+Backend (Render / Railway / EC2)
+Environment variables:
 
 
 GROQ_API_KEY=
 PINECONE_API_KEY=
 VECTOR_STORE=chroma
+Start command:
 
 
 uvicorn main:app --host 0.0.0.0 --port $PORT
-Frontend → Vercel / Netlify
-Env:
+Frontend (Vercel / Netlify)
+Set:
 
 
 VITE_BACKEND_URL=https://your-backend-url
 🧩 Environment Example
-
-
+ini
+Copy code
 GROQ_API_KEY=
 PINECONE_API_KEY=
 VECTOR_STORE=chroma
@@ -214,7 +231,4 @@ MIT License.
 👤 Author
 Abhishek Yogesh
 
-
-
----
 
