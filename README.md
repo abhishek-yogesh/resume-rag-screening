@@ -36,10 +36,7 @@ resume-rag-fastapi/
 │ └── sample_jd_2.txt
 └── README.md
 
-yaml
-Copy code
 
----
 
 ## ⚙️ Local Setup
 
