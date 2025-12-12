@@ -12,11 +12,6 @@ This system extracts text from resumes & JDs → chunks → embeds → retrieves
 ---
 
 ## 🔖 Badges
-
-<<<<<<< HEAD
-
-=======
->>>>>>> f8dcb66 (docs: final cleaned README)
 ![Python](https://img.shields.io/badge/Python-3.10+-blue?logo=python)
 ![FastAPI](https://img.shields.io/badge/FastAPI-Backend-009688?logo=fastapi)
 ![React](https://img.shields.io/badge/React-Frontend-61DAFB?logo=react)
@@ -24,17 +19,10 @@ This system extracts text from resumes & JDs → chunks → embeds → retrieves
 ![Groq](https://img.shields.io/badge/LLM-Groq%20LLaMA%203-orange)
 ![ChromaDB](https://img.shields.io/badge/VectorDB-Chroma-9cf)
 ![License](https://img.shields.io/badge/License-MIT-green)
-<<<<<<< HEAD
-=======
-![Architecture Diagram](./assets/Architecture.png)
-
-=======
->>>>>>> f8dcb66 (docs: final cleaned README)
 
 ---
 
 ## 🖼 System Architecture
-
 <p align="center">
   <img src="./assets/Architecture.png" alt="Architecture Diagram" width="850">
 </p>
@@ -42,7 +30,6 @@ This system extracts text from resumes & JDs → chunks → embeds → retrieves
 ---
 
 ## 📑 Table of Contents
-
 - [Features](#-features)
 - [Project Structure](#-project-structure)
 - [Local Setup](#-local-setup)
@@ -57,7 +44,6 @@ This system extracts text from resumes & JDs → chunks → embeds → retrieves
 ---
 
 ## 🚀 Features
-
 - Upload Resume (PDF/TXT)
 - Upload Job Description
 - Automatic text extraction → chunking → embedding
@@ -69,7 +55,6 @@ This system extracts text from resumes & JDs → chunks → embeds → retrieves
 ---
 
 ## 📂 Project Structure
-
 resume-rag-fastapi/
 ├── backend/
 │ ├── app/
@@ -95,103 +80,87 @@ resume-rag-fastapi/
 ├── .gitignore
 └── README.md
 
-<<<<<<< HEAD
-=======
-
->>>>>>> f8dcb66 (docs: final cleaned README)
 
 ---
 
 ## ⚙️ Local Setup
 
 ### Backend (FastAPI)
-
-
+```bash
 cd backend
 python -m venv venv
-venv\Scripts\Activate.ps1      # Windows PowerShell
+venv\Scripts\Activate.ps1
 pip install -r requirements.txt
-
-# Create .env based on .env.example
 uvicorn main:app --reload --port 8000
-Open backend:
 
-http://localhost:8000
 
-Swagger Docs → http://localhost:8000/docs
+Backend UI:
+
+API root → http://localhost:8000
+
+Swagger → http://localhost:8000/docs
+
 
 Frontend (React + Vite)
-
 cd frontend
 npm install
 npm run dev
+
 Open frontend:
-
-
 http://localhost:5173
+
 📘 API Documentation
 POST /upload_resume
-Uploads a resume → extract → chunk → embed → store.
-
-Request:
 
 file=@resume.pdf
+
 Response:
-
-
 {
   "status": "success",
   "resume_id": "uuid",
   "filename": "resume.pdf"
 }
+
+
 POST /upload_jd
-Request:
-
-bash
-Copy code
-file=@jd.txt
 Response:
-
-
 {
   "status": "success",
   "jd_id": "uuid",
   "filename": "jd.txt"
 }
+
+
 POST /match-score
-Runs RAG → Retrieves similar text → Groq LLaMA 3 analysis.
-
-Request:
-
-
 {
   "resume_id": "uuid",
   "jd_id": "uuid"
 }
+
 Response:
-
-
 {
   "match_score": 82.4,
   "highlights": ["Strong React skills", "Missing AWS"],
   "explanation": "Based on retrieved context..."
 }
-POST /query (Optional Q&A)
-Request:
 
+
+POST /query
 {
   "question": "What skills are missing?",
   "resume_id": "uuid",
   "jd_id": "uuid"
 }
+
 Response:
-
-
 {
   "answer": "The candidate lacks AWS deployment experience."
 }
+
+
 🧪 Sample Files
-Located in sample_files/:
+
+Included in sample_files/:
 
 sample_resume_1.txt
 
@@ -201,34 +170,35 @@ sample_jd_1.txt
 
 sample_jd_2.txt
 
+
 🚀 Deployment
 Backend (Render / Railway / EC2)
-Environment variables:
 
-
+Environment:
 GROQ_API_KEY=
 PINECONE_API_KEY=
 VECTOR_STORE=chroma
-Start command:
 
 
+Start:
 uvicorn main:app --host 0.0.0.0 --port $PORT
+
+
 Frontend (Vercel / Netlify)
-Set:
-
-
 VITE_BACKEND_URL=https://your-backend-url
-🧩 Environment Example
-ini
-Copy code
+
+🧩 Environment Example:
 GROQ_API_KEY=
 PINECONE_API_KEY=
 VECTOR_STORE=chroma
 VITE_BACKEND_URL=http://localhost:8000
+
+
 📄 License
 MIT License.
 
 👤 Author
 Abhishek Yogesh
+
 
 
