@@ -253,7 +253,7 @@ VITE_BACKEND_URL=http://localhost:8000
 ## 🎥 Demo Video
 
 Watch the full demo here:  
-👉 **Google Drive Link:** https://drive.google.com/file/d/XXXXXXXX/view?usp=sharing
+👉 **Google Drive Link:** https://drive.google.com/file/d/https://drive.google.com/file/d/1AYLtM5yfe1-DQosf_D1tk-jz_OmILHrs/view?usp=sharing/view?usp=sharing
 
 
 ## 📄 License
