@@ -247,6 +247,15 @@ VITE_BACKEND_URL=http://localhost:8000
 
 ---
 
+
+---
+
+## 🎥 Demo Video
+
+Watch the full demo here:  
+👉 **Google Drive Link:** https://drive.google.com/file/d/XXXXXXXX/view?usp=sharing
+
+
 ## 📄 License
 
 MIT License.
