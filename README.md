@@ -1,39 +1,88 @@
 # Resume RAG — resume-rag-fastapi
 
-AI-powered Resume Screening (RAG) using FastAPI backend, React frontend, SentenceTransformers for embeddings, Chroma/Pinecone vector stores, and Groq LLaMA 3 for reasoning and match scoring.
+AI-powered Resume Screening using a Retrieval-Augmented Generation (RAG) pipeline with:
+- FastAPI backend  
+- React + Vite frontend  
+- SentenceTransformers for embeddings  
+- ChromaDB / Pinecone for vector search  
+- Groq LLaMA 3 for scoring & explanation  
+
+This system extracts text from resumes & JDs → chunks → embeds → retrieves similar segments → uses LLM reasoning to compute a match score and insights.
 
 ---
 
-## 📌 System Architecture
+## 🔖 Badges
 
-![Architecture Diagram](./assets/Architecture.png)
+![Python](https://img.shields.io/badge/Python-3.10+-blue?logo=python)
+![FastAPI](https://img.shields.io/badge/FastAPI-Backend-009688?logo=fastapi)
+![React](https://img.shields.io/badge/React-Frontend-61DAFB?logo=react)
+![Vite](https://img.shields.io/badge/Vite-Build%20Tool-646CFF?logo=vite)
+![Groq](https://img.shields.io/badge/LLM-Groq%20LLaMA%203-orange)
+![ChromaDB](https://img.shields.io/badge/VectorDB-Chroma-9cf)
+![License](https://img.shields.io/badge/License-MIT-green)
 
-> `/upload_resume` and `/upload_jd` perform preprocessing (text → chunk → embed).  
-> `/match-score` only retrieves stored data → vector search → Groq LLaMA analysis.
+---
+
+## 🖼 System Architecture
+
+<p align="center">
+  <img src="./assets/Architecture.png" alt="Architecture Diagram" width="850">
+</p>
+
+---
+
+## 📑 Table of Contents
+
+- [Features](#-features)
+- [Project Structure](#-project-structure)
+- [Local Setup](#-local-setup)
+  - [Backend Setup](#backend-fastapi)
+  - [Frontend Setup](#frontend-react--vite)
+- [API Documentation](#-api-documentation)
+- [Sample Files](#-sample-files)
+- [Deployment](#-deployment)
+- [Environment Variables](#-environment-example)
+- [License](#-license)
 
 ---
 
 ## 🚀 Features
+
 - Upload Resume (PDF/TXT)
 - Upload Job Description
-- Embedding + similarity search
-- LLM (Groq LLaMA 3) scoring
-- Highlights + missing skills + explanation
-- Optional Chat/Q&A
+- Automatic text extraction → chunking → embedding
+- Vector similarity search (Chroma or Pinecone)
+- LLM scoring & explanation (Groq LLaMA 3)
+- Highlights matched & missing skills
+- Optional Q&A for deeper insights
 
 ---
 
 ## 📂 Project Structure
+
 resume-rag-fastapi/
 ├── backend/
+│ ├── app/
+│ ├── main.py
+│ ├── requirements.txt
+│ └── .env.example
+│
 ├── frontend/
+│ ├── src/
+│ ├── public/
+│ ├── package.json
+│ └── vite.config.js
+│
 ├── assets/
 │ └── architecture.png
+│
 ├── sample_files/
 │ ├── sample_resume_1.txt
 │ ├── sample_resume_2.txt
 │ ├── sample_jd_1.txt
 │ └── sample_jd_2.txt
+│
+├── .gitignore
 └── README.md
 
 
@@ -43,71 +92,127 @@ resume-rag-fastapi/
 ## ⚙️ Local Setup
 
 ### Backend (FastAPI)
-```bash
+
+
 cd backend
 python -m venv venv
-venv\Scripts\Activate.ps1
+venv\Scripts\Activate.ps1      # Windows PowerShell
 pip install -r requirements.txt
+
+# Create .env based on .env.example
 uvicorn main:app --reload --port 8000
 Open:
-http://localhost:8000
-Swagger:
-http://localhost:8000/docs
 
-Frontend (Vite React)
-bash
-Copy code
+API root → http://localhost:8000
+
+Swagger UI → http://localhost:8000/docs
+
+Frontend (React + Vite)
+
 cd frontend
 npm install
 npm run dev
-🔌 API Documentation
+Open:
+http://localhost:5173
+
+📘 API Documentation
 POST /upload_resume
-Upload resume file → process → chunk → embed → store
+Uploads a resume → extract → chunk → embed → store.
 
-Response
+Request:
+file=@resume.pdf
 
-json
-Copy code
-{ "status":"success", "resume_id":"<uuid>" }
+Response:
+{
+  "status": "success",
+  "resume_id": "uuid",
+  "filename": "resume.pdf"
+}
+
 POST /upload_jd
-Upload JD text → process → store
+Request:
 
-Response
+file=@jd.txt
+Response:
 
-json
-Copy code
-{ "status":"success", "jd_id":"<uuid>" }
+
+{
+  "status": "success",
+  "jd_id": "uuid",
+  "filename": "jd.txt"
+}
+
+
 POST /match-score
-RAG pipeline → similarity search → Groq LLaMA reasoning
+Runs full RAG pipeline → vector retrieval → Groq LLaMA analysis.
 
-Response
+Request:
+{
+  "resume_id": "uuid",
+  "jd_id": "uuid"
+}
 
-json
-Copy code
+Response:
 {
   "match_score": 82.4,
   "highlights": ["Strong React skills", "Missing AWS"],
-  "explanation": "..."
+  "explanation": "Based on retrieved context..."
 }
-POST /query (optional Q&A)
-Provide follow-up questions about resume/JD.
+
+POST /query (Optional Q&A)
+Request:
+{
+  "question": "What skills are missing?",
+  "resume_id": "uuid",
+  "jd_id": "uuid"
+}
+
+Response:
+{
+  "answer": "The candidate lacks AWS deployment experience."
+}
 
 🧪 Sample Files
-Use the files in sample_files/ for testing.
+Located in sample_files/:
+
+sample_resume_1.txt
+
+sample_resume_2.txt
+
+sample_jd_1.txt
+
+sample_jd_2.txt
 
 🚀 Deployment
-Backend → Render / Railway
+Backend → Render / Railway / EC2
 
-Frontend → Vercel
 
-Env vars:
 
-GROQ_API_KEY
+GROQ_API_KEY=
+PINECONE_API_KEY=
+VECTOR_STORE=chroma
 
-PINECONE_API_KEY
 
-VITE_BACKEND_URL
+uvicorn main:app --host 0.0.0.0 --port $PORT
+Frontend → Vercel / Netlify
+Env:
 
-🧾 License
-MIT
+
+VITE_BACKEND_URL=https://your-backend-url
+🧩 Environment Example
+
+
+GROQ_API_KEY=
+PINECONE_API_KEY=
+VECTOR_STORE=chroma
+VITE_BACKEND_URL=http://localhost:8000
+📄 License
+MIT License.
+
+👤 Author
+Abhishek Yogesh
+
+
+
+---
 
