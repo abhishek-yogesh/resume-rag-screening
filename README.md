@@ -85,6 +85,8 @@ resume-rag-fastapi/
 
 ---
 
+
+---
 ## ⚙️ Local Setup
 
 ### Backend (FastAPI)
@@ -92,7 +94,7 @@ resume-rag-fastapi/
 ```bash
 cd backend
 python -m venv venv
-venv\Scripts\Activate.ps1      # Windows PowerShell
+venv\Scripts\Activate.ps1
 pip install -r requirements.txt
 
 uvicorn main:app --reload --port 8000
@@ -100,7 +102,6 @@ uvicorn main:app --reload --port 8000
 
 ### Frontend (React + Vite)
 
-```bash
 cd frontend
 npm install
 npm run dev
