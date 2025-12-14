@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { getMatchAnalysis } from "../api/api";
+import { getMatchAnalysis, generatePDF } from "../api/api";
 import "./MatchScore.css";
 
 interface MatchScoreProps {
@@ -11,11 +11,41 @@ const MatchScore: React.FC<MatchScoreProps> = ({ resumeId, jdId }) => {
   const [result, setResult] = useState<any>(null);
   const [loading, setLoading] = useState(false);
 
-  const getScoreClass = (score: string) => {
-    const value = parseFloat(score);
+    //  Match score (number only)
+  const getScoreValue = (score: string | null) => {
+    if (!score) return null;
+    const value = Number(score.replace("%", ""));
+    return isNaN(value) ? null : value;
+  };
+
+    // 2️⃣ Decide colour based on numeric score
+  const getScoreClass = (score: string | null) => {
+    const value = getScoreValue(score);
+    if (value === null) return "";
+
     if (value >= 75) return "score-green";
     if (value >= 40) return "score-yellow";
     return "score-red";
+  };
+
+
+  // 📄 PDF DOWNLOAD HANDLER
+  const downloadPDF = async () => {
+    if (!resumeId || !jdId) return;
+
+    try {
+      const blob = await generatePDF(resumeId, jdId);
+      const url = window.URL.createObjectURL(blob);
+
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "resume_match_report.pdf";
+      a.click();
+
+      window.URL.revokeObjectURL(url);
+    } catch (err) {
+      alert("Failed to download PDF report");
+    }
   };
 
   const runMatch = async () => {
@@ -70,18 +100,30 @@ const MatchScore: React.FC<MatchScoreProps> = ({ resumeId, jdId }) => {
         </button>
       )}
 
+      {/* 📄 Show PDF button ONLY when result exists */}
+      {result && !result.error && (
+        <button className="btn secondary" onClick={downloadPDF}>
+          📄 Download PDF Report
+        </button>
+      )}
+
       {result && (
         <div className="result-panel fade-in">
           {result.error ? (
             <p className="error">{result.error}</p>
           ) : (
             <>
-              {/* MAIN SCORE BADGE */}
-              <div className={`score-badge ${getScoreClass(result.match_score)}`}>
-                {result.match_score}
-              </div>
+              {(() => {
+  const scoreValue = getScoreValue(result.match_score);
 
-              {/* CATEGORY SCORES */}
+              return (
+               <div className={`score-badge ${getScoreClass(result.match_score)}`}>
+                {scoreValue !== null ? `${scoreValue}%` : "--"}
+                </div>
+                 );
+                 })()}
+
+
               {result.category_scores && (
                 <div className="category-box">
                   <h4>📌 Category Scores</h4>
@@ -89,14 +131,12 @@ const MatchScore: React.FC<MatchScoreProps> = ({ resumeId, jdId }) => {
                     ([name, value], index) => (
                       <div className="category-row" key={index}>
                         <span className="category-name">{name}</span>
-
                         <div className="progress-bar">
                           <div
                             className="progress-fill"
                             style={{ width: `${value}%` }}
-                          ></div>
+                          />
                         </div>
-
                         <span className="category-value">{value}%</span>
                       </div>
                     )
@@ -104,7 +144,6 @@ const MatchScore: React.FC<MatchScoreProps> = ({ resumeId, jdId }) => {
                 </div>
               )}
 
-              {/* STRENGTHS */}
               <div className="section strengths">
                 <h4>✅ Strengths</h4>
                 <ul>
@@ -123,7 +162,6 @@ const MatchScore: React.FC<MatchScoreProps> = ({ resumeId, jdId }) => {
                 </ul>
               </div>
 
-              {/* GAPS */}
               <div className="section gaps">
                 <h4>❌ Gaps</h4>
                 <ul>
@@ -142,7 +180,6 @@ const MatchScore: React.FC<MatchScoreProps> = ({ resumeId, jdId }) => {
                 </ul>
               </div>
 
-              {/* INSIGHTS */}
               <div
                 className="insights-box"
                 dangerouslySetInnerHTML={{
