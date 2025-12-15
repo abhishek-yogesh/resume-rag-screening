@@ -27,7 +27,7 @@ This system extracts text from resumes & job descriptions → **chunks** → **e
 ## 🖼 System Architecture
 
 <p align="center">
-  <img src="./assets/Architecture.png" alt="Architecture Diagram" width="850">
+  <img src="./assets/architecture.png" alt="Architecture Diagram" width="850">
 </p>
 
 ---
