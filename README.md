@@ -10,6 +10,8 @@ AI-powered resume screening system built using a **Retrieval-Augmented Generatio
 
 This system extracts text from resumes & job descriptions → **chunks** → **embeds** → **retrieves semantically relevant segments** → uses **LLM reasoning** to compute an **explainable match score and insights**.
 
+The system is designed as a production-style AI screening backend combining semantic embedding similarity (AI signal) with lightweight skill-gap explainability (human-readable reasoning), enabling both accurate matching and recruiter-friendly decision support.
+
 ---
 
 ## 🔖 Badges
@@ -59,6 +61,7 @@ This system extracts text from resumes & job descriptions → **chunks** → **e
 * Explainable LLM-based scoring (Groq LLaMA 3)
 * Highlights **matched skills**, **gaps**, and **category-wise scores**
 * Optional RAG-based chat for deeper resume insights
+* Grounded RAG chat — generates answers strictly from retrieved resume context using prompt constraints to reduce hallucination
 
 ---
 
@@ -149,6 +152,8 @@ This design was chosen because:
 * It keeps the frontend lightweight and the API contract clean
 
 > **Note:** An alternative design is to use the job description embedding as a query to rank many resumes (bulk screening use case). This can be added later if the system is extended.
+
+Additionally, the RAG chat system uses strict prompt grounding to ensure responses are generated only from retrieved resume context. This improves reliability for recruiter-facing workflows and reduces hallucinated responses commonly seen in unconstrained LLM systems.
 
 ---
 
@@ -300,4 +305,6 @@ MIT License.
 
 ## 👤 Author
 
-**Abhishek Yogesh**
+**Abhishek Yogesh**  
+Backend + AI Engineer | RAG Systems | FastAPI | GenAI Applications
+
