@@ -96,3 +96,16 @@ export async function askQuestion(question: string, resumeId: string) {
   return data;
 }
 
+export async function generatePDF(resumeId: string, jdId: string) {
+  const res = await fetch(`${BASE_URL}/generate_report`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ resume_id: resumeId, jd_id: jdId }),
+  });
+
+  if (!res.ok) {
+    throw new Error("Failed to generate PDF");
+  }
+
+  return await res.blob();
+}
